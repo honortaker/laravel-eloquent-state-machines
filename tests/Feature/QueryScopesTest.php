@@ -7,13 +7,14 @@ use Asantibanez\LaravelEloquentStateMachines\Tests\TestModels\SalesManager;
 use Asantibanez\LaravelEloquentStateMachines\Tests\TestModels\SalesOrder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use PHPUnit\Framework\Attributes\Test;
 
 class QueryScopesTest extends TestCase
 {
     use RefreshDatabase;
     use WithFaker;
 
-    /** @test */
+    #[Test]
     public function can_get_models_with_transition_responsible_model()
     {
         //Arrange
@@ -41,7 +42,7 @@ class QueryScopesTest extends TestCase
         });
     }
 
-    /** @test */
+    #[Test]
     public function can_get_models_with_transition_responsible_id()
     {
         //Arrange
@@ -64,7 +65,7 @@ class QueryScopesTest extends TestCase
         $this->assertEquals(1, $salesOrders->count());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_models_with_specific_transition()
     {
         //Arrange
@@ -89,7 +90,7 @@ class QueryScopesTest extends TestCase
         $this->assertEquals($salesOrder->id, $salesOrders->first()->id);
     }
 
-    /** @test */
+    #[Test]
     public function can_get_models_with_specific_transition_to_state()
     {
         //Arrange
@@ -114,7 +115,7 @@ class QueryScopesTest extends TestCase
         $this->assertEquals($salesOrder->id, $salesOrders->first()->id);
     }
 
-    /** @test */
+    #[Test]
     public function can_get_models_with_an_array_of_transition_to_states()
     {
         //Arrange
@@ -143,7 +144,7 @@ class QueryScopesTest extends TestCase
         $this->assertEquals($salesOrder2->id, $salesOrders[1]->id);
     }
 
-    /** @test */
+    #[Test]
     public function can_get_models_with_specific_transition_from_state()
     {
         //Arrange
@@ -168,7 +169,7 @@ class QueryScopesTest extends TestCase
         $this->assertEquals($salesOrder->id, $salesOrders->first()->id);
     }
 
-    /** @test */
+    #[Test]
     public function can_get_models_with_an_array_of_transition_from_states()
     {
         //Arrange
@@ -197,7 +198,7 @@ class QueryScopesTest extends TestCase
         $this->assertEquals($anotherSalesOrder2->id, $salesOrders[1]->id);
     }
 
-    /** @test */
+    #[Test]
     public function can_get_models_with_specific_transition_custom_property()
     {
         //Arrange
@@ -221,7 +222,7 @@ class QueryScopesTest extends TestCase
         $this->assertEquals($salesOrder->id, $salesOrders->first()->id);
     }
 
-    /** @test */
+    #[Test]
     public function can_get_models_using_multiple_state_machines_transitions()
     {
         //Arrange

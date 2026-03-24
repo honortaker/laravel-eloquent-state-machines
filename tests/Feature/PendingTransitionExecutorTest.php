@@ -11,13 +11,14 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Support\Facades\Queue;
+use PHPUnit\Framework\Attributes\Test;
 
 class PendingTransitionExecutorTest extends TestCase
 {
     use RefreshDatabase;
     use WithFaker;
 
-    /** @test */
+    #[Test]
     public function should_apply_pending_transition()
     {
         //Arrange
@@ -55,7 +56,7 @@ class PendingTransitionExecutorTest extends TestCase
         $this->assertFalse($salesOrder->status()->hasPendingTransitions());
     }
 
-    /** @test */
+    #[Test]
     public function should_fail_job_automatically_if_starting_transition_is_not_the_same_as_when_postponed()
     {
         //Arrange

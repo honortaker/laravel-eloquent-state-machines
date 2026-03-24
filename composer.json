@@ -1,11 +1,11 @@
 {
-    "name": "asantibanez/laravel-eloquent-state-machines",
+    "name": "honortaker/laravel-eloquent-state-machines",
     "description": "State machines for your Laravel Eloquent models",
     "keywords": [
         "asantibanez",
         "laravel-eloquent-state-machines"
     ],
-    "homepage": "https://github.com/asantibanez/laravel-eloquent-state-machines",
+    "homepage": "https://github.com/honortaker/laravel-eloquent-state-machines",
     "license": "MIT",
     "type": "library",
     "authors": [
@@ -13,17 +13,22 @@
             "name": "Andrés Santibáñez",
             "email": "santibanez.andres@gmail.com",
             "role": "Developer"
+        },
+        {
+            "name": "honortaker",
+            "homepage": "https://github.com/honortaker",
+            "role": "Developer"
         }
     ],
     "require": {
-        "php": "^7.3|^7.4|^8.0",
-        "illuminate/support": "^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
+        "php": "^8.2",
+        "illuminate/support": "^12.0|^13.0",
         "javoscript/laravel-macroable-models": "^1.0"
     },
     "require-dev": {
         "laravel/legacy-factories": "^1.0.4",
-        "orchestra/testbench": "^4.0|^5.0|^6.0|^7.0|^8.0|^9.0|^10.0",
-        "phpunit/phpunit": "^8.0|^9.0|^10.5|^11.5.3"
+        "orchestra/testbench": "^10.0|^11.0",
+        "phpunit/phpunit": "^11.5.3|^12.0"
     },
     "autoload": {
         "psr-4": {

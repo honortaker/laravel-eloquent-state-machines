@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Queue;
+use PHPUnit\Framework\Attributes\Test;
 
 class PendingTransitionsDispatcherTest extends TestCase
 {
@@ -23,7 +24,7 @@ class PendingTransitionsDispatcherTest extends TestCase
         Queue::fake();
     }
 
-    /** @test */
+    #[Test]
     public function should_dispatch_pending_transition()
     {
         //Arrange
@@ -48,7 +49,7 @@ class PendingTransitionsDispatcherTest extends TestCase
         });
     }
 
-    /** @test */
+    #[Test]
     public function should_not_dispatch_future_pending_transitions()
     {
         //Arrange
