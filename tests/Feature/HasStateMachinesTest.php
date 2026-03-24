@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Validation\ValidationException;
+use PHPUnit\Framework\Attributes\Test;
 use Queue;
 use Throwable;
 
@@ -22,7 +23,7 @@ class HasStateMachinesTest extends TestCase
     use RefreshDatabase;
     use WithFaker;
 
-    /** @test */
+    #[Test]
     public function can_configure_state_machines()
     {
         //Act
@@ -37,7 +38,7 @@ class HasStateMachinesTest extends TestCase
         $this->assertNotNull($salesOrder->fulfillment());
     }
 
-    /** @test */
+    #[Test]
     public function should_set_default_state_for_field()
     {
         //Arrange
@@ -58,7 +59,7 @@ class HasStateMachinesTest extends TestCase
         $this->assertEquals(0, $salesOrder->fulfillment()->history()->count());
     }
 
-    /** @test */
+    #[Test]
     public function should_transition_to_next_state()
     {
         //Arrange
@@ -79,7 +80,7 @@ class HasStateMachinesTest extends TestCase
         $this->assertEquals('approved', $salesOrder->status);
     }
 
-    /** @test */
+    #[Test]
     public function should_not_do_anything_when_transitioning_to_same_state()
     {
         //Arrange
@@ -100,7 +101,7 @@ class HasStateMachinesTest extends TestCase
         $this->assertEquals(1, $salesOrder->status()->history()->count());
     }
 
-    /** @test */
+    #[Test]
     public function should_register_responsible_for_transition_when_specified()
     {
         //Arrange
@@ -124,7 +125,7 @@ class HasStateMachinesTest extends TestCase
         $this->assertEquals(SalesManager::class, get_class($responsible));
     }
 
-    /** @test */
+    #[Test]
     public function should_register_auth_as_responsible_for_transition_when_available()
     {
         //Arrange
@@ -146,7 +147,7 @@ class HasStateMachinesTest extends TestCase
         $this->assertEquals(SalesManager::class, get_class($responsible));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_next_possible_transitions()
     {
         //Arrange
@@ -160,7 +161,7 @@ class HasStateMachinesTest extends TestCase
         $this->assertFalse($salesOrder->status()->canBe('declined'));
     }
 
-    /** @test */
+    #[Test]
     public function should_throw_exception_for_invalid_state_on_transition()
     {
         //Arrange
@@ -180,7 +181,7 @@ class HasStateMachinesTest extends TestCase
         }
     }
 
-    /** @test */
+    #[Test]
     public function should_throw_exception_for_custom_validator_on_transition()
     {
         //Arrange
@@ -202,7 +203,7 @@ class HasStateMachinesTest extends TestCase
         }
     }
 
-    /** @test */
+    #[Test]
     public function should_record_history_when_transitioning_to_next_state()
     {
         //Arrange
@@ -221,7 +222,7 @@ class HasStateMachinesTest extends TestCase
         $this->assertEquals(2, $salesOrder->status()->history()->count());
     }
 
-    /** @test */
+    #[Test]
     public function should_record_history_when_creating_model()
     {
         //Arrange
@@ -240,7 +241,7 @@ class HasStateMachinesTest extends TestCase
         $this->assertEquals(1, $salesOrder->status()->history()->count());
     }
 
-    /** @test */
+    #[Test]
     public function should_save_auth_user_as_responsible_in_record_history_when_creating_model()
     {
         //Arrange
@@ -257,7 +258,7 @@ class HasStateMachinesTest extends TestCase
         $this->assertEquals($salesManager->id, $salesOrder->status()->responsible()->id);
     }
 
-    /** @test */
+    #[Test]
     public function should_not_record_history_when_creating_model_if_record_history_turned_off()
     {
         //Arrange
@@ -278,7 +279,7 @@ class HasStateMachinesTest extends TestCase
         $this->assertEquals(0, $salesOrder->fulfillment()->history()->count());
     }
 
-    /** @test */
+    #[Test]
     public function can_record_history_with_custom_properties_when_transitioning_to_next_state()
     {
         //Arrange
@@ -299,7 +300,7 @@ class HasStateMachinesTest extends TestCase
         $this->assertEquals($comments, $salesOrder->status()->getCustomProperty('comments'));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_previous_state_was_transitioned()
     {
         //Arrange
@@ -326,7 +327,7 @@ class HasStateMachinesTest extends TestCase
         $this->assertEquals(0, $salesOrder->status()->was('another_status'));
     }
 
-    /** @test */
+    #[Test]
     public function can_record_pending_transition()
     {
         //Arrange
@@ -375,7 +376,7 @@ class HasStateMachinesTest extends TestCase
         $this->assertEquals($salesManager->id, $pendingTransition->responsible->id);
     }
 
-    /** @test */
+    #[Test]
     public function should_not_record_pending_transition_for_same_state()
     {
         //Arrange
@@ -393,7 +394,7 @@ class HasStateMachinesTest extends TestCase
         $this->assertNull($pendingTransition);
     }
 
-    /** @test */
+    #[Test]
     public function should_cancel_all_pending_transitions_when_transitioning_to_next_state()
     {
         //Arrange
@@ -424,7 +425,7 @@ class HasStateMachinesTest extends TestCase
         $this->assertTrue($salesOrder->fulfillment()->hasPendingTransitions());
     }
 
-    /** @test */
+    #[Test]
     public function should_throw_exception_for_invalid_state_on_postponed_transition()
     {
         //Arrange
